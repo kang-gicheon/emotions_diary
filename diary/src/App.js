@@ -1,8 +1,10 @@
+import emotion1 from "./img/emotion1.png"; // 이미지 파일 불러옴
+
 function App() {
   return (
     <div className="App">
-      <h1>폰트 테스트</h1>
-      <h2>테스트하기</h2>
+      {/* img 태그 src 속성으로 지정 */}
+      <img alt="감정1" src={emotion1} />
     </div>
   );
 }
