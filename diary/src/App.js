@@ -1,10 +1,13 @@
-import emotion1 from "./img/emotion1.png"; // 이미지 파일 불러옴
+import { getEmotionImgById } from "./util";
 
 function App() {
   return (
     <div className="App">
-      {/* img 태그 src 속성으로 지정 */}
-      <img alt="감정1" src={emotion1} />
+      <img alt="감정1" src={getEmotionImgById(1)} />
+      <img alt="감정2" src={getEmotionImgById(2)} />
+      <img alt="감정3" src={getEmotionImgById(3)} />
+      <img alt="감정4" src={getEmotionImgById(4)} />
+      <img alt="감정5" src={getEmotionImgById(5)} />
     </div>
   );
 }
