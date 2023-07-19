@@ -21,6 +21,14 @@ const Editor = ({ initData, onSubmit }) => {
     });
   };
 
+  // 일기를 작성할 글상자 이벤트 핸들러, 작성한 일기 데이터는 state.content 프로퍼티로 저장
+  const handleChangeContent = (e) => {
+    setState({
+      ...state,
+      content: e.target.value,
+    });
+  };
+
   return (
     <div className="Editor">
       <div className="editor_section">
@@ -43,6 +51,13 @@ const Editor = ({ initData, onSubmit }) => {
       <div className="editor_section">
         {/* 일기 */}
         <h4>오늘의 일기</h4>
+        <div className="input_wrapper">
+          <textarea
+            placeholder="오늘은 어땠나요?" // 일기를 작성할 textarea 적용
+            value={state.content}
+            onChange={handleChangeContent}
+          />
+        </div>
       </div>
 
       <div className="editeditor_section">{/* 작성 완료, 취소 */}</div>
