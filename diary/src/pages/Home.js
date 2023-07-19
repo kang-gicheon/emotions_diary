@@ -6,9 +6,25 @@ const Home = () => {
   return (
     <div>
       <Button
-        text={"버튼 텍스트"}
+        text={"기본 버튼"}
         onClick={() => {
-          alert("이걸 왜 누름ㅋㅋㅋㅋ");
+          alert("default button");
+        }}
+      />
+
+      <Button
+        type="positive"
+        text={"긍정 버튼"}
+        onClick={() => {
+          alert("positive button");
+        }}
+      />
+
+      <Button
+        type="negative"
+        text={"부정 버튼"}
+        onClick={() => {
+          alert("negative button");
         }}
       />
     </div>
