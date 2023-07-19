@@ -1,32 +1,11 @@
 // 인덱스 페이지 컴포넌트
 
-import Button from "../component/Button";
-import Header from "../component/Header";
+import Editor from "../component/Editor";
 
 const Home = () => {
   return (
     <div>
-      <Header
-        title={"Home"}
-        leftChild={
-          <Button
-            type="positive"
-            text={"긍정 버튼"}
-            onClick={() => {
-              alert("positive button");
-            }}
-          />
-        }
-        rightChild={
-          <Button
-            type="negative"
-            text={"부정 버튼"}
-            onClick={() => {
-              alert("negative button");
-            }}
-          />
-        }
-      />
+      <Editor />
     </div>
   );
 };
