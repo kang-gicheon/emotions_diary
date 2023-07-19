@@ -1,12 +1,14 @@
 import "./Editor.css";
 import { useState } from "react";
+import { getFormattedDate } from "../util";
 
 // Editor 컴포넌트 - 날짜, 감정이미지, 일기텍스트를 입력
 
+// Editor 컴포넌트에서 함수(getFormattedDate) 호출 state.date 초기값을 오늘 날짜로 지정
 const Editor = ({ initData, onSubmit }) => {
   const [state, setState] = useState({
     // state 초깃값 설정을 위해 useState의 인수로 받음
-    date: "", // (받을 인수들)날짜 정보
+    date: getFormattedDate(new Date()), // (받을 인수들)날짜 정보
     emotionId: 3, // 이미지 번호(= 감정 이미지 번호)
     content: "", // 작성 일기
   });
