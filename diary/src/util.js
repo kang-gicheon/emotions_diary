@@ -37,7 +37,7 @@ export const getFormattedDate = (targetDate) => {
 
   // 월과 일이 10 미만의 수라면 앞에 0을 붙임, 두 자리 수 로 제작
   if (month < 10) {
-    date = `0${date}`;
+    month = `0${month}`;
   }
   if (date < 10) {
     date = `0${date}`;
