@@ -11,17 +11,23 @@
 
 import "./EmotionItem.css";
 
-const EmontionItem = ({ id, img, name, onClick, isSelected }) => {
+const EmotionItem = ({ id, img, name, onClick, isSelected }) => {
   const handleOnClick = () => {
     onClick(id);
   };
 
   return (
-    <div className="EmontionItem" onClick={handleOnClick}>
+    <div
+      className={[
+        "EmotionItem",
+        isSelected ? `EmotionItem_on_${id}` : `EmotionItem_off`,
+      ].join(" ")}
+      onClick={handleOnClick}
+    >
       <img alt={`emtion${id}`} src={img} />
       <span>{name}</span>
     </div>
   );
 };
 
-export default EmontionItem;
+export default EmotionItem;

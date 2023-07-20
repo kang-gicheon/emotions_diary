@@ -3,6 +3,7 @@ import { useState } from "react";
 import { emotionList, getFormattedDate } from "../util";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import EmotionItem from "./EmotionItem";
 
 // Editor 컴포넌트 - 날짜, 감정이미지, 일기텍스트를 입력
 
@@ -42,6 +43,15 @@ const Editor = ({ initData, onSubmit }) => {
     navigate(-1); // navigate 호출, 인수로 -1을 전달시 뒤로 가기 이벤트 동작
   };
 
+  // 감정 이미지를 클릭했을시 호출하는 이벤트 핸들러
+  const handleChangeEmotion = (emotionId) => {
+    setState({
+      // 클릭한 이미지 번호를 매개변수 emotionId 아이디에 저장
+      ...state,
+      emotionId, // 이미지 번호로 현재 state의 emotionId 값을 업데이트
+    });
+  };
+
   return (
     <div className="Editor">
       <div className="editor_section">
@@ -61,9 +71,18 @@ const Editor = ({ initData, onSubmit }) => {
         <h4>오늘의 감정</h4>
         {/* 감정 이미지 스타일 불러오기 */}
         <div className="input_wrapper emotion_list_wrapper">
-          {emotionList.map((it) => (
-            <img key={it.id} alt={`emotion${it.id}`} src={it.img} />
-          ))}
+          {emotionList.map(
+            (
+              it // map을 이용한 emotionList에 저장된 이미지 5개 반복 렌더링
+            ) => (
+              <EmotionItem
+                key={it.id} // props key로 감정 이미지 id 전달
+                {...it}
+                onClick={handleChangeEmotion}
+                isSelected={state.emotionId === it.id}
+              />
+            )
+          )}
         </div>
       </div>
 
