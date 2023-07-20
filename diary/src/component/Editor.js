@@ -1,6 +1,6 @@
 import "./Editor.css";
 import { useState } from "react";
-import { getFormattedDate } from "../util";
+import { emotionList, getFormattedDate } from "../util";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
@@ -59,6 +59,12 @@ const Editor = ({ initData, onSubmit }) => {
       <div className="editor_section">
         {/* 감정 */}
         <h4>오늘의 감정</h4>
+        {/* 감정 이미지 스타일 불러오기 */}
+        <div className="input_wrapper emotion_list_wrapper">
+          {emotionList.map((it) => (
+            <img key={it.id} alt={`emotion${it.id}`} src={it.img} />
+          ))}
+        </div>
       </div>
 
       <div className="editor_section">

@@ -52,3 +52,11 @@ textarea {
     align-items: center;
 
 }
+
+/* 감정 리스트 구조 */
+.Editor .emotion_list_wrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 2%;
+
+}

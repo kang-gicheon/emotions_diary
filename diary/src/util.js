@@ -45,3 +45,32 @@ export const getFormattedDate = (targetDate) => {
 
   return `${year}-${month}-${date}`;
 };
+
+// 5개 감정 이미지 렌더링 함수
+export const emotionList = [
+  {
+    id: 1,
+    name: "완전 좋음",
+    img: getEmotionImgById(1),
+  },
+  {
+    id: 2,
+    name: "좋음",
+    img: getEmotionImgById(2),
+  },
+  {
+    id: 3,
+    name: "그럭저럭",
+    img: getEmotionImgById(3),
+  },
+  {
+    id: 4,
+    name: "나름",
+    img: getEmotionImgById(4),
+  },
+  {
+    id: 5,
+    name: "끔찍함",
+    img: getEmotionImgById(5),
+  },
+];
