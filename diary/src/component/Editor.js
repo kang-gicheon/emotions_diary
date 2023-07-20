@@ -1,5 +1,5 @@
 import "./Editor.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { emotionList, getFormattedDate } from "../util";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,17 @@ import EmotionItem from "./EmotionItem";
 // Editor 컴포넌트에서 함수(getFormattedDate) 호출 state.date 초기값을 오늘 날짜로 지정
 const Editor = ({ initData, onSubmit }) => {
   const navigate = useNavigate(); // 페이지 이동 구현 함수
+
+  useEffect(() => {
+    // useEffect 호출, props로 받은 init Date 의존성 배열 저장
+    if (initData) {
+      // initData가 true라면 if문 수행
+      setState({
+        ...initData,
+        date: getFormattedDate(new Date(parseInt(initData.date))),
+      });
+    }
+  }, [initData]);
 
   const [state, setState] = useState({
     // state 초깃값 설정을 위해 useState의 인수로 받음
