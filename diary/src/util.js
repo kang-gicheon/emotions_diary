@@ -74,3 +74,22 @@ export const emotionList = [
     img: getEmotionImgById(5),
   },
 ];
+
+// pivotDate에 저장된 날짜에서 해당 월의 시작과 끝을 나타내는 값(= 타임 스탬프값)을 출력하는 함수
+
+export const getMonthRangeByDate = (date) => {
+  const beginTimeStamp = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    1
+  ).getTime();
+  const endTimeStamp = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0,
+    23,
+    59,
+    59
+  ).getTime();
+  return { beginTimeStamp, endTimeStamp };
+};
