@@ -1,5 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap");
 
+/* html 요소, body 영역 + 사용할 기본 폰트 설정 CSS */
+html,
 body {
   margin: 0px;
+  width: 100%;
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  font-family: "Nanum Pen Script";
+}
+
+body {
+  height: 100%;
+}
+
+/* 컴포넌트 요소중 id가 root인 div태그 CSS */
+#root {
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: white;
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 7px 29px 0px;
 }
