@@ -21,12 +21,12 @@
     justify-content: center;
 }
 
-.Header .heager_left {
+.Header .header_left {
     width: 25%;
     justify-content: start;
 }
 
-.Header .heager_right {
+.Header .header_right {
     width: 25%;
     justify-content: end;
 }
