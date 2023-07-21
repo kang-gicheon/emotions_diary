@@ -4,11 +4,37 @@ import New from "./pages/New";
 import Diary from "./pages/Diary";
 import Edit from "./pages/Edit";
 import { Link, Route, Routes } from "react-router-dom";
-import { useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
+
+const mockData = [
+  {
+    id: "mock1",
+    date: new Date().getTime(),
+    content: "mock1",
+    emotionId: 1,
+  },
+  {
+    id: "mock2",
+    date: new Date().getTime(),
+    content: "mock2",
+    emotionId: 1,
+  },
+  {
+    id: "mock3",
+    date: new Date().getTime(),
+    content: "mock3",
+    emotionId: 1,
+  },
+];
 
 // case = create면 일기 state 배열 맨 앞에 추가된 새 일기 데이터 반환
 function reducer(state, action) {
   switch (action.type) {
+    case "INIT": {
+      // case가 init일 경우
+      return action.data; // action.data 그대로 반환
+    }
+
     case "CREATE": {
       return [action.data, ...state];
     }
@@ -22,6 +48,11 @@ function reducer(state, action) {
         String(it.id) === String(action.data.id) ? { ...action.data } : it
       );
     }
+
+    // 삭제할 일기 아이템을 제외한 새 일기 데이터 배열 반환(delete)
+    case "DELETE": {
+      return state.filter((it) => String(it.id) !== String(action.targetId));
+    }
   }
 }
 
@@ -29,6 +60,16 @@ function App() {
   const [data, dispatch] = useReducer(reducer, []); // 일기 데이터를 관리한 state 변수 data
 
   const idRef = useRef(0); // 인수로 0을 전달, 초깃값 설정
+
+  const [isDataLoaded, setIsDataLoaded] = useState(false); // 데이터 로딩
+
+  useEffect(() => {
+    dispatch({
+      type: "INIT",
+      data: mockData,
+    });
+    setIsDataLoaded(true);
+  }, []);
 
   // Create 기능 함수
   // Editor 컴포넌트에서 사용자가 선택한 이미지 번호를 매개변수 id,date,content,emotionId로 저장
@@ -69,16 +110,19 @@ function App() {
     });
   };
 
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/new" element={<New />} />
-        <Route path="/diary/:id" element={<Diary />} />
-        <Route path="/edit" element={<Edit />} />
-      </Routes>
-    </div>
-  );
+  if (!isDataLoaded) {
+    return <div>데이터 불러오는 중!</div>;
+  } else {
+    return (
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<New />} />
+          <Route path="/diary/:id" element={<Diary />} />
+          <Route path="/edit" element={<Edit />} />
+        </Routes>
+      </div>
+    );
+  }
 }
-
 export default App;
