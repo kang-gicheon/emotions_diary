@@ -3,8 +3,8 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
 import Edit from "./pages/Edit";
-import { Link, Route, Routes } from "react-router-dom";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 
 const mockData = [
   {
@@ -26,6 +26,11 @@ const mockData = [
     emotionId: 1,
   },
 ];
+
+// 기본 React 객체 react 라이브러리에서 불러옴
+// 일기 state 값을 공급할 Context를 제작, 다른 파일에서 불러올 수 있게 함
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 // case = create면 일기 state 배열 맨 앞에 추가된 새 일기 데이터 반환
 function reducer(state, action) {
@@ -114,14 +119,24 @@ function App() {
     return <div>데이터 불러오는 중!</div>;
   } else {
     return (
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/new" element={<New />} />
-          <Route path="/diary/:id" element={<Diary />} />
-          <Route path="/edit" element={<Edit />} />
-        </Routes>
-      </div>
+      <DiaryStateContext.Provider value={data}>
+        <DiaryDispatchContext.Provider
+          value={{
+            onCreate,
+            onUpdate,
+            onDelete,
+          }}
+        >
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/diary/:id" element={<Diary />} />
+              <Route path="/edit/:id" element={<Edit />} />
+            </Routes>
+          </div>
+        </DiaryDispatchContext.Provider>
+      </DiaryStateContext.Provider>
     );
   }
 }
