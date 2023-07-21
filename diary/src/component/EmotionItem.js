@@ -8,8 +8,8 @@
  * onClick: 감정 이미지를 클릭하면 동작하는 이벤트 핸들러
  * isSelected : 감정 이미지의 선택 여부 - 선택된 감정 이미지에 별도의 스타일을 적용
  */
-
-import "./EmotionItem.css";
+import React from 'react';
+import './EmotionItem.css';
 
 const EmotionItem = ({ id, img, name, onClick, isSelected }) => {
   const handleOnClick = () => {
@@ -19,9 +19,9 @@ const EmotionItem = ({ id, img, name, onClick, isSelected }) => {
   return (
     <div
       className={[
-        "EmotionItem",
+        'EmotionItem',
         isSelected ? `EmotionItem_on_${id}` : `EmotionItem_off`,
-      ].join(" ")}
+      ].join(' ')}
       onClick={handleOnClick}
     >
       <img alt={`emtion${id}`} src={img} />
@@ -30,4 +30,4 @@ const EmotionItem = ({ id, img, name, onClick, isSelected }) => {
   );
 };
 
-export default EmotionItem;
+export default React.memo(EmotionItem);

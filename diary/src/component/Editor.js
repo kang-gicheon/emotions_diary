@@ -1,9 +1,9 @@
-import "./Editor.css";
-import { useState, useEffect } from "react";
-import { emotionList, getFormattedDate } from "../util";
-import Button from "./Button";
-import { useNavigate } from "react-router-dom";
-import EmotionItem from "./EmotionItem";
+import './Editor.css';
+import { useState, useEffect, useCallback } from 'react';
+import { emotionList, getFormattedDate } from '../util';
+import Button from './Button';
+import { useNavigate } from 'react-router-dom';
+import EmotionItem from './EmotionItem';
 
 // Editor 컴포넌트 - 날짜, 감정이미지, 일기텍스트를 입력
 
@@ -26,7 +26,7 @@ const Editor = ({ initData, onSubmit }) => {
     // state 초깃값 설정을 위해 useState의 인수로 받음
     date: getFormattedDate(new Date()), // (받을 인수들)날짜 정보
     emotionId: 3, // 이미지 번호(= 감정 이미지 번호)
-    content: "", // 작성 일기
+    content: '', // 작성 일기
   });
 
   // 날짜 변경을 했을 경우 실행한 이벤트 핸들러
@@ -55,13 +55,13 @@ const Editor = ({ initData, onSubmit }) => {
   };
 
   // 감정 이미지를 클릭했을시 호출하는 이벤트 핸들러
-  const handleChangeEmotion = (emotionId) => {
-    setState({
+  const handleChangeEmotion = useCallback((emotionId) => {
+    setState((state) => ({
       // 클릭한 이미지 번호를 매개변수 emotionId 아이디에 저장
       ...state,
       emotionId, // 이미지 번호로 현재 state의 emotionId 값을 업데이트
-    });
-  };
+    }));
+  }, []);
 
   return (
     <div className="Editor">
@@ -84,7 +84,7 @@ const Editor = ({ initData, onSubmit }) => {
         <div className="input_wrapper emotion_list_wrapper">
           {emotionList.map(
             (
-              it // map을 이용한 emotionList에 저장된 이미지 5개 반복 렌더링
+              it, // map을 이용한 emotionList에 저장된 이미지 5개 반복 렌더링
             ) => (
               <EmotionItem
                 key={it.id} // props key로 감정 이미지 id 전달
@@ -92,7 +92,7 @@ const Editor = ({ initData, onSubmit }) => {
                 onClick={handleChangeEmotion}
                 isSelected={state.emotionId === it.id}
               />
-            )
+            ),
           )}
         </div>
       </div>
@@ -111,8 +111,8 @@ const Editor = ({ initData, onSubmit }) => {
 
       {/* 일기를 작성하고 취소할 기능을 가진 버튼 영역 */}
       <div className="editor_section bottom_section">
-        <Button text={"취소하기"} onClick={handleOnGoBack} />
-        <Button text={"작성 완료"} type={"positive"} onClick={handleSubmit} />
+        <Button text={'취소하기'} onClick={handleOnGoBack} />
+        <Button text={'작성 완료'} type={'positive'} onClick={handleSubmit} />
       </div>
     </div>
   );

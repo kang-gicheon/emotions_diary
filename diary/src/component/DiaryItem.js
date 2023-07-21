@@ -1,5 +1,5 @@
 // 작성된 일기 리스트, 아이템을 보여줄 컴포넌트
-
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DiaryItem.css';
 import { getEmotionImgById } from '../util';
@@ -40,4 +40,5 @@ const DiaryItem = ({ id, emotionId, content, date }) => {
   );
 };
 
-export default DiaryItem;
+// React.memo를 이용해 props 기준으로 최적화
+export default React.memo(DiaryItem);
