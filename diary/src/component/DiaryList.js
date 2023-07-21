@@ -1,6 +1,6 @@
 // 일기 목록, 정렬 기능을 포함한 컴포넌트
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import "./DiaryList.css";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,22 @@ const DiaryList = ({ data }) => {
   const [sortType, setSortType] = useState("latest"); // 사용자가 선택할 정렬기준 state 초기값은 최신순으로
 
   const navigate = useNavigate();
+
+  const [sortedData, setSortedData] = useState([]); // 일기 데이터 시간 순 정렬 함수
+
+  // props로 받은 일기데이터를 sortType에 따라 정렬, 정렬된 일기 리스트 페이지 렌더링
+  useEffect(() => {
+    const compare = (a,b) => {
+      if (sortType === "latest") {  //  sortType이 latest라면 최신순으로 정렬
+        return Number(b.date) - Number(a.date); // 일기 객체 date를 내림차순으로 정렬
+      } else {
+        return Number(a.date) - Number(b.date);
+      }
+    };
+    const copyList = JSON.parse(JSON.stringify(data));
+    copyList.sort(compare);   // copyList에 저장된 일기 데이터 정렬
+    setSortedData(copyList);  // setSortedData를 정렬된 일기 데이터로 업데이트
+  }, [data, sortType]);
 
   const onClickNew = () => {
     // 버튼을 클릭시 new 페이지로 이동하는 함수(새로운 일기 작성)

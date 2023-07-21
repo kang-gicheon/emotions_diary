@@ -6,24 +6,25 @@ import Edit from "./pages/Edit";
 import { Route, Routes } from "react-router-dom";
 import React, { useEffect, useReducer, useRef, useState } from "react";
 
+// 기능 테스트를 위한 임시 데이터
 const mockData = [
   {
     id: "mock1",
-    date: new Date().getTime(),
+    date: new Date().getTime()-1,
     content: "mock1",
     emotionId: 1,
   },
   {
     id: "mock2",
-    date: new Date().getTime(),
+    date: new Date().getTime()-2,
     content: "mock2",
-    emotionId: 1,
+    emotionId: 2,
   },
   {
     id: "mock3",
-    date: new Date().getTime(),
+    date: new Date().getTime()-3,
     content: "mock3",
-    emotionId: 1,
+    emotionId: 3,
   },
 ];
 
