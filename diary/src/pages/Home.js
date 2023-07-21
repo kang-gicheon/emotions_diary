@@ -4,6 +4,7 @@ import Button from "../component/Button";
 import Header from "../component/Header";
 import { DiaryStateContext } from "../App";
 import { getMonthRangeByDate } from "../util";
+import DiaryList from "../component/DiaryList";
 
 const Home = () => {
   // 일기 데이터를 공급, useContext를 호출하며 인수로 DiaryStateContext 전달
@@ -48,6 +49,8 @@ const Home = () => {
         leftChild={<Button text={"<"} onClick={onDecreaseMonth} />} // 버튼을 클릭시 한달씩 뒤로
         rightChild={<Button text={">"} onClick={onIncreaseMonth} />} // 버튼을 클릭시 한달씩 앞으로
       />
+
+      <DiaryList data={filteredData} />
     </div>
   );
 };
