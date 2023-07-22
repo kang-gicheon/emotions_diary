@@ -1,16 +1,21 @@
 // 일기 상세 조회 페이지 컴포넌트
 import { useNavigate, useParams } from 'react-router-dom';
 import useDiary from '../hooks/useDiary';
-import { getFormattedDate } from '../util';
+import { getFormattedDate, setPageTitle } from '../util';
 import Header from '../component/Header';
 import Button from '../component/Button';
 import Viewer from '../component/Viewer';
+import { useEffect } from 'react';
 
 const Diary = () => {
   const { id } = useParams();
   const data = useDiary(id); // 인수를 통해 URL파라미터로 받은 일기 id 전달
   // console.log(data); data 출력 테스트
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setPageTitle(`${id}번 일기`);
+  }, []);
 
   const goBack = () => {
     navigate(-1);

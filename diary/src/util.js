@@ -1,23 +1,23 @@
 // 감정이미지를 사용하는 컴포넌트, 페이지등을 이 경로에서 반환 함수를 부를 수 있게 함
 
-import emotion1 from "./img/emotion1.png";
-import emotion2 from "./img/emotion2.png";
-import emotion3 from "./img/emotion3.png";
-import emotion4 from "./img/emotion4.png";
-import emotion5 from "./img/emotion5.png";
+import emotion1 from './img/emotion1.png';
+import emotion2 from './img/emotion2.png';
+import emotion3 from './img/emotion3.png';
+import emotion4 from './img/emotion4.png';
+import emotion5 from './img/emotion5.png';
 
 export const getEmotionImgById = (emotionId) => {
   const targetEmotionId = String(emotionId);
   switch (targetEmotionId) {
-    case "1":
+    case '1':
       return emotion1;
-    case "2":
+    case '2':
       return emotion2;
-    case "3":
+    case '3':
       return emotion3;
-    case "4":
+    case '4':
       return emotion4;
-    case "5":
+    case '5':
       return emotion5;
 
     default:
@@ -50,27 +50,27 @@ export const getFormattedDate = (targetDate) => {
 export const emotionList = [
   {
     id: 1,
-    name: "완전 좋음",
+    name: '완전 좋음',
     img: getEmotionImgById(1),
   },
   {
     id: 2,
-    name: "좋음",
+    name: '좋음',
     img: getEmotionImgById(2),
   },
   {
     id: 3,
-    name: "그럭저럭",
+    name: '그럭저럭',
     img: getEmotionImgById(3),
   },
   {
     id: 4,
-    name: "나름",
+    name: '나름',
     img: getEmotionImgById(4),
   },
   {
     id: 5,
-    name: "끔찍함",
+    name: '끔찍함',
     img: getEmotionImgById(5),
   },
 ];
@@ -81,7 +81,7 @@ export const getMonthRangeByDate = (date) => {
   const beginTimeStamp = new Date(
     date.getFullYear(),
     date.getMonth(),
-    1
+    1,
   ).getTime();
   const endTimeStamp = new Date(
     date.getFullYear(),
@@ -89,7 +89,15 @@ export const getMonthRangeByDate = (date) => {
     0,
     23,
     59,
-    59
+    59,
   ).getTime();
   return { beginTimeStamp, endTimeStamp };
+};
+
+// 페이지마다 다른 제목 설정을 위한 함수
+export const setPageTitle = (title) => {
+  {
+    const titleElement = document.getElementsByTagName('title')[0];
+    titleElement.innerText = title;
+  }
 };

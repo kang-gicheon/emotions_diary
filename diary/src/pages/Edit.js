@@ -4,9 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useDiary from '../hooks/useDiary';
 import Header from '../component/Header';
 import Button from '../component/Button';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { DiaryDispatchContext } from '../App';
 import Editor from '../component/Editor';
+import { setPageTitle } from '../util';
 
 const Edit = () => {
   const { id } = useParams();
@@ -14,7 +15,6 @@ const Edit = () => {
   const navigate = useNavigate();
 
   const { onUpdate, onDelete } = useContext(DiaryDispatchContext); // 함수 onDelete 구조 분해 할당
-
   // update 함수
   const onSubmit = (data) => {
     if (window.confirm('일기를 정말 수정할까요?')) {
@@ -23,6 +23,10 @@ const Edit = () => {
       navigate('/', { replace: true });
     }
   };
+
+  useEffect(() => {
+    setPageTitle(`${id}번 일기 수정하기 `);
+  });
 
   // 삭제하기 함수
   const onClickDelete = () => {

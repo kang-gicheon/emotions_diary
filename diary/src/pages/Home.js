@@ -1,10 +1,10 @@
 // 인덱스 페이지 컴포넌트
-import { useContext, useEffect, useState } from "react";
-import Button from "../component/Button";
-import Header from "../component/Header";
-import { DiaryStateContext } from "../App";
-import { getMonthRangeByDate } from "../util";
-import DiaryList from "../component/DiaryList";
+import { useContext, useEffect, useState } from 'react';
+import Button from '../component/Button';
+import Header from '../component/Header';
+import { DiaryStateContext } from '../App';
+import { getMonthRangeByDate, setPageTitle } from '../util';
+import DiaryList from '../component/DiaryList';
 
 const Home = () => {
   // 일기 데이터를 공급, useContext를 호출하며 인수로 DiaryStateContext 전달
@@ -30,12 +30,13 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setPageTitle('kang-gicheon의 감정 일기장');
     if (data.length >= 1) {
       const { beginTimeStamp, endTimeStamp } = getMonthRangeByDate(pivotDate);
       setFilteredData(
         data.filter(
-          (it) => beginTimeStamp <= it.date && it.date <= endTimeStamp
-        )
+          (it) => beginTimeStamp <= it.date && it.date <= endTimeStamp,
+        ),
       );
     } else {
       setFilteredData([]);
@@ -46,8 +47,8 @@ const Home = () => {
     <div>
       <Header
         title={headerTitle}
-        leftChild={<Button text={"<"} onClick={onDecreaseMonth} />} // 버튼을 클릭시 한달씩 뒤로
-        rightChild={<Button text={">"} onClick={onIncreaseMonth} />} // 버튼을 클릭시 한달씩 앞으로
+        leftChild={<Button text={'<'} onClick={onDecreaseMonth} />} // 버튼을 클릭시 한달씩 뒤로
+        rightChild={<Button text={'>'} onClick={onIncreaseMonth} />} // 버튼을 클릭시 한달씩 앞으로
       />
 
       <DiaryList data={filteredData} />
