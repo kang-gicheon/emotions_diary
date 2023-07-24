@@ -22,9 +22,11 @@
 <hr/>
  <img src="https://img.shields.io/badge/React-v18.2.0-red?logo=React"/>
  <img src="https://img.shields.io/badge/React Router-v6.14.2-green?logo=React"/>
- <img src="https://img.shields.io/badge/React Scripts-v5.0.1-blue?logo=React"/>
+ <img src="https://img.shields.io/badge/React Scripts-v5.0.1-blue?logo=React"/><br><br>
+
 
  ![CreatePlan](./image/image/json_version.PNG)
+
 
 ### 📚 구현 기능
 <hr/>
