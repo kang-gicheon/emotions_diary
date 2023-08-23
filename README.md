@@ -1,4 +1,4 @@
-# 리액트 프로젝트 - 감정일기장<br><br>
+# 리액트 프로젝트 - 📝감정일기장<br><br>
 ![CreatePlan](./image/thumbnail.png)<br>
 
 
